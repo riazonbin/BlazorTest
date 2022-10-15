@@ -1,0 +1,46 @@
+﻿@page "/userData"
+
+<PageTitle>Weather forecast</PageTitle>
+
+@using BlazorTest.Data
+@inject UnitService UnitService
+
+<h1>Unit</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (units == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Surname</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var unit in units)
+            {
+                <tr>
+                    <td>@unit.Name</td>
+                    <td>@unit.SurName</td>
+                    <td>@unit.Age</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Unit[]? units;
+
+    protected override async Task OnInitializedAsync()
+    {
+        units = await UnitService.GetUnitAsync();
+    }
+}
