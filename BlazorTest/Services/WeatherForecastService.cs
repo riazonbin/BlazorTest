@@ -1,4 +1,6 @@
-namespace BlazorTest.Data
+using BlazorTest.Data;
+
+namespace BlazorTest.Services
 {
     public class WeatherForecastService
     {

@@ -1,36 +1,45 @@
-﻿@using Data 
+﻿@using Data
 
-<h3>Table of users</h3>
 
-@if (Users == null)
+@if (Users.Count == 0)
 {
-        <p><em>Loading...</em></p>
+    <p><em>No users!!! ;(</em></p>
+}
+else if(Users.Count == 1)
+{
+    <div class="card" style="width : 250px">
+        <div class="card-body">
+            <p>Name: @Users.FirstOrDefault()?.Name</p>
+            <p>Surname: @Users.FirstOrDefault()?.SurName</p>
+            <p>Age: @Users.FirstOrDefault()?.Age</p>
+        </div>
+    </div>
 }
 else
 {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Age</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach (var user in Users)
-            {
-                <tr>
-                    <td>@user.Name</td>
-                    <td>@user.SurName</td>
-                    <td>@user.Age</td>
-                </tr>
-            }
-            </tbody>
+    <table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Users)
+    {
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.SurName</td>
+            <td>@user.Age</td>
+        </tr>
+    }
+        </tbody>
         </table>
 }
 
-
 @code {
     [Parameter]
-    public List<Unit> Users { get; set; }
+    public List<User>? Users { get; set; }
+
 }

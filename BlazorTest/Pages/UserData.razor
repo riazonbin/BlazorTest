@@ -3,44 +3,14 @@
 <PageTitle>Weather forecast</PageTitle>
 
 @using BlazorTest.Data
-@inject UnitService UnitService
+@using BlazorTest.Services
 
 <h1>Unit</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (units == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Age</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var unit in units)
-            {
-                <tr>
-                    <td>@unit.Name</td>
-                    <td>@unit.SurName</td>
-                    <td>@unit.Age</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<TableComponent Users="@UserService.GetUnit()"></TableComponent>
+
 
 @code {
-    private List<Unit>? units;
-
-    protected override async Task OnInitializedAsync()
-    {
-        units = await UnitService.GetUnitAsync();
-    }
 }
