@@ -1,0 +1,36 @@
+﻿@using Data 
+
+<h3>Table of users</h3>
+
+@if (Users == null)
+{
+        <p><em>Loading...</em></p>
+}
+else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Users)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.SurName</td>
+                    <td>@user.Age</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+}
+
+
+@code {
+    [Parameter]
+    public List<Unit> Users { get; set; }
+}

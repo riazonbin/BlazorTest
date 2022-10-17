@@ -2,21 +2,26 @@ namespace BlazorTest.Data
 {
     public class UnitService
     {
-        private static readonly string[] Summaries = new[]
+        private static readonly string[] firstNames = new[]
         {
-        "Brad", "John", "Ivan", "Negro", "Timur", "Danil", "Timurkin", "Andrew", "Jack", "Tom"
+        "Brad", "John", "Ivan", "Maxim", "Timur", "Danil", "Tamerlan", "Andrew", "Jack", "Tom"
         };
 
-        public Task<Unit[]> GetUnitAsync()
+        private static readonly string[] lastNames = new[]
+{
+        "Abramov", "Kolobkov", "Sergeev", "Ivanov", "Tikhomirov", "Morozov", "Timurkin", "Kalita", "Johnov", "Brevnov"
+        };
+
+        public Task<List<Unit>> GetUnitAsync()
         {
             Random random = new Random();
 
-            return Task.FromResult(Enumerable.Range(1, 5).Select(index => new Unit
+            return Task.FromResult(Enumerable.Range(1, random.Next(0,6)).Select(index => new Unit
             {
-                Name = Summaries[random.Next(Summaries.Length)],
-                SurName = Summaries[random.Next(Summaries.Length)],
+                Name = firstNames[random.Next(firstNames.Length)],
+                SurName = lastNames[random.Next(lastNames.Length)],
                 Age = random.Next(0, 100)
-            }).ToArray()); ;
+            }).ToList()); ;
         }
     }
 }
